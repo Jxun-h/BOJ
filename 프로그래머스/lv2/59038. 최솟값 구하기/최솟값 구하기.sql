@@ -1,0 +1,1 @@
+select DATETIME as '시간' from ANIMAL_INS order by DATETIME ASC limit 1
