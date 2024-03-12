@@ -1,18 +1,14 @@
-from sys import stdin
+import sys
 
-arr = [[0 for _ in range(31)] for _ in range(31)]
+arr = [[y for y in range(31)] for x in range(31)]
 
-for i in range(1, 31):
-    arr[1][i] = i
-
-for i in range(2, 31):
-    for j in range(i, 31):
-        if i == j:
-            arr[i][j] = 1
+for x in range(2, 31):
+    for y in range(x, 31):
+        if x == y:
+            arr[x][y] = 1
         else:
-            arr[i][j] = arr[i - 1][j - 1] + arr[i][j - 1]
+            arr[x][y] = arr[x - 1][y - 1] + arr[x][y - 1]
 
-
-for _ in range(int(stdin.readline())):
-    a, b = map(int, stdin.readline().split())
+for _ in range(int(sys.stdin.readline())):
+    a, b = map(int, sys.stdin.readline().split())
     print(arr[a][b])
