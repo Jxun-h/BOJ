@@ -1,23 +1,29 @@
-from sys import stdin
-from math import sqrt as sq
-ipt = stdin.readline
+import sys
 
-m, n = int(ipt().rstrip()), int(ipt().rstrip())
+is_prime_arr = [1 for x in range(1, 10001)]
+prime = []
 
-arr = [x for x in range(m, n+1) if (x % 2 != 0 or x == 2) and x != 1]
-result_arr = []
 
-for x in arr:
-    chk = True
-    for y in range(2, int(sq(x))+1):
-        if x % y == 0:
-            chk = False
-            break
-    if chk:
-        result_arr.append(x)
+def is_prime():
+    for i in range(2, 10000):
+        if is_prime_arr[i]:
+            prime.append(i)
+            start = i + i
+            for x in range(start, 10000, i):
+                is_prime_arr[x] = False
 
-if len(result_arr) > 0:
-    print(sum(result_arr))
-    print(min(result_arr))
-else:
+
+is_prime()
+answer = []
+n = int(sys.stdin.readline())
+m = int(sys.stdin.readline())
+
+for i in prime:
+    if n <= i <= m:
+        answer.append(i)
+
+if len(answer) == 0:
     print(-1)
+else:
+    print(sum(answer))
+    print(min(answer))
